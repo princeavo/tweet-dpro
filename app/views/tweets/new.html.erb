@@ -1,0 +1,22 @@
+<h1>Ajouter un tweet</h1>
+
+<% if @tweet.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @tweet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div id="error_message" style="background-color:red">
+</div>
+
+<%= form_for(@tweet) do |f|  
+ %>
+  <%= f.text_area :content, maxlength: 140, placeholder: "Composez votre tweet (140 caractères max)" %>
+  <p id="character_count">Nombre de caractères : <span id="current_length"></span></p>
+  <%= f.submit "Tweeter" %>
+<% end %>
+
+<%= link_to "Back to tweets", tweets_path %>
